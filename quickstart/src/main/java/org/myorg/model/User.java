@@ -27,14 +27,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
+    @NamedQuery(name = "User.findByHash", query = "SELECT u FROM User u WHERE u.loginhash = :lh"),
     @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id")})
 public class User implements Serializable {
-    @Basic(optional = false)
-    @Lob
+    @Lob()
     @Column(name = "publicKey")
     private byte[] publicKey;
-    @Basic(optional = false)
-    @Lob
+    @Lob()
     @Column(name = "loginhash")
     private byte[] loginhash;
     private static final long serialVersionUID = 1L;

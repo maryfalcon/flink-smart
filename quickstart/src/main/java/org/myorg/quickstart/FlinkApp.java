@@ -24,43 +24,30 @@ import org.myorg.persistor.Persistor;
 
 public class FlinkApp {
 
-    public static PrivateKey pk;
+    public static void workWithFile(String filename, String  fileContent, byte[] signature, String extension) throws Exception {
 
-    public static void workWithFile(String filename, String  fileContent) throws Exception {
-
-        KeyPair kp = RSA.generateKeyPair();//on client
+        //KeyPair kp = RSA.generateKeyPair();//on client
 
         final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
-
         String initString = fileContent;
         DataSet<String> text = env.fromElements(initString);
-        byte[] signature = RSA.sign(initString.getBytes(), kp.getPrivate()); //on client
+        //signature = RSA.sign(initString.getBytes(), kp.getPrivate()); //on client
 
         Data dataToInsert = new Data();
         dataToInsert.setFile(initString.getBytes());
         dataToInsert.setHash(signature);
         dataToInsert.setName(filename);
+        dataToInsert.setExtension(extension);
         dataToInsert = new Persistor().insertData(dataToInsert);
         String resp = sendHttpRequest(signature, "datahash", "&fileid="+dataToInsert.getId());
-        pk = kp.getPrivate();
 
     }
     
-    public static void getAccessToEdit(String filename, byte[]  filehash) throws Exception{
+    public static boolean getAccessToEdit(String filename, byte[]  filehash) throws Exception{
         Data data = new Persistor().getDataByName(filename);
-        sendHttpRequest(filehash, "hashcheck", "&fileid="+data.getId());
+        String resp = sendHttpRequest(filehash, "hashcheck", "&fileid="+data.getId());
+        return resp.equals("true");
         
-    }
-
-    public static void getAccessToFile(String fileName/*,byte[] signature*/) {
-        Data data = new Persistor().getDataByName(fileName);
-        byte[] signature = RSA.sign(data.getFile(), pk);
-        if (Arrays.equals(signature, data.getHash())) {
-            System.out.println(new String(data.getFile()));
-        } else {
-            System.out.println("no");
-        }
-
     }
 
     public static String sendHttpRequest(byte[] bytesToSend, String param, String otherParams) throws Exception{
@@ -68,15 +55,12 @@ public class FlinkApp {
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
-        //add reuqest header
         con.setRequestMethod("POST");
         con.setRequestProperty("User-Agent", "Mozilla/5.0");
         con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
-        
 
         String urlParameters = "bytes="+new String(bytesToSend)+"&param="+param+otherParams;
 
-        // Send post request
         con.setDoOutput(true);
         DataOutputStream wr = new DataOutputStream(con.getOutputStream());
         wr.writeBytes(urlParameters);
@@ -84,9 +68,6 @@ public class FlinkApp {
         wr.close();
 
         int responseCode = con.getResponseCode();
-        System.out.println("\nSending 'POST' request to URL : " + url);
-        System.out.println("Post parameters : " + urlParameters);
-        System.out.println("Response Code : " + responseCode);
 
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(con.getInputStream()));
@@ -97,18 +78,6 @@ public class FlinkApp {
             response.append(inputLine);
         }
         in.close();
-
-        //print result
-        System.out.println(response.toString());
         return response.toString();
-    }
-
-    public static void main(String[] args) throws Exception {
-        //workWithFile("fn","fkslkdfjslkdfj lkfjsdklf kdfjskd fjkldfjsdlfjl lksdjfklsdjfklsdj flksdjfklsdjf fsdjflksdjfksfksd f");
-        //getAccessToFile("fn");
-        //sendHttpRequest("fsdflksjdf dksjfsk kfjdsk fkjf sfjkfj sdkjf".getBytes(),"datahash","");
-        Data d = new Persistor().getDataByName("fn");
-        getAccessToEdit(d.getName(), d.getHash());
-
     }
 }

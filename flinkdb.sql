@@ -4,7 +4,7 @@
 # Server version:               5.5.29
 # Server OS:                    Win32
 # HeidiSQL version:             5.0.0.3272
-# Date/time:                    2016-01-09 22:41:08
+# Date/time:                    2016-01-20 00:37:56
 # --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -24,8 +24,9 @@ CREATE TABLE IF NOT EXISTS `data` (
   `file` blob NOT NULL,
   `name` varchar(50) DEFAULT NULL,
   `hash` blob,
+  `extension` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 # Dumping data for table flinkdb.data: 0 rows
 /*!40000 ALTER TABLE `data` DISABLE KEYS */;
@@ -36,10 +37,10 @@ CREATE TABLE IF NOT EXISTS `data` (
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `publicKey` blob NOT NULL,
-  `loginhash` blob NOT NULL,
+  `publicKey` blob,
+  `loginhash` blob,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 # Dumping data for table flinkdb.user: 0 rows
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;

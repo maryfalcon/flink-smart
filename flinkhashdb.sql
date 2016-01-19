@@ -4,7 +4,7 @@
 # Server version:               5.5.29
 # Server OS:                    Win32
 # HeidiSQL version:             5.0.0.3272
-# Date/time:                    2016-01-09 22:42:12
+# Date/time:                    2016-01-20 00:38:51
 # --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `datahash` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
-# Dumping data for table flinkhashdb.datahash: 1 rows
+# Dumping data for table flinkhashdb.datahash: 0 rows
 /*!40000 ALTER TABLE `datahash` DISABLE KEYS */;
 /*!40000 ALTER TABLE `datahash` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

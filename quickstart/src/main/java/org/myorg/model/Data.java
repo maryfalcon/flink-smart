@@ -34,13 +34,14 @@ public class Data implements Serializable {
     @Lob
     @Column(name = "file")
     private byte[] file;
-    @Basic(optional = false)
-    @Column(name = "name")
-    private String name;
-    @Basic(optional = false)
     @Lob
     @Column(name = "hash")
     private byte[] hash;
+    @Column(name = "extension")
+    private String extension;
+    @Basic(optional = false)
+    @Column(name = "name")
+    private String name;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -95,13 +96,6 @@ public class Data implements Serializable {
         return "org.myorg.model.Data[ id=" + id + " ]";
     }
 
-    public byte[] getFile() {
-        return file;
-    }
-
-    public void setFile(byte[] file) {
-        this.file = file;
-    }
 
     public String getName() {
         return name;
@@ -111,12 +105,28 @@ public class Data implements Serializable {
         this.name = name;
     }
 
+    public byte[] getFile() {
+        return file;
+    }
+
+    public void setFile(byte[] file) {
+        this.file = file;
+    }
+
     public byte[] getHash() {
         return hash;
     }
 
     public void setHash(byte[] hash) {
         this.hash = hash;
+    }
+
+    public String getExtension() {
+        return extension;
+    }
+
+    public void setExtension(String extension) {
+        this.extension = extension;
     }
     
 }
