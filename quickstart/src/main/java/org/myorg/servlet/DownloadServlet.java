@@ -5,6 +5,10 @@
  */
 package org.myorg.servlet;
 
+import org.myorg.model.Data;
+import org.myorg.service.DataService;
+import org.myorg.service.UserService;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,77 +26,71 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "DownloadServlet", urlPatterns = {"/DownloadServlet"})
 public class DownloadServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet DownloadServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet DownloadServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+    enum Actions {
+        LOGIN,
+        SEND_FILE,
+        SEND_SIGN,
+        UPDATE,
+        FILES_LIST
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    private UserService userService = new UserService();
+
+    private DataService dataService = new DataService();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        String action = request.getParameter("action");
         InputStream input = request.getInputStream();
-        byte[] buffer = new byte[1024];
-
-        for (int length = 0; (length = input.read(buffer)) > -1;) {
-            output.write(buffer, 0, length);
+        boolean isLogged = isLogged(request);
+        if (!isLogged) {
+            response.getOutputStream().print(false);
+            return;
         }
-
-        byte[] bytes = output.toByteArray();
+        if (Actions.LOGIN.toString().equals(action)) {
+            response.getOutputStream().print(true);
+            return;
+        } else if (Actions.SEND_FILE.toString().equals(action)) {
+            Data data = dataService.saveData(request, input);
+            response.getOutputStream().print(data.getId());
+            return;
+        } else if (Actions.SEND_SIGN.toString().equals(action)) {
+            try {
+                String res = dataService.saveSign(request, input);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            response.getOutputStream().print(true);
+            return;
+        } else if (Actions.FILES_LIST.toString().equals(action)) {
+            String fileNames = dataService.getFilesNames();
+            response.getOutputStream().print(fileNames);
+            return;
+        } else if (Actions.UPDATE.toString().equals(action)) {
+            boolean answer = false;
+            try {
+                answer = dataService.checkSignature(request, input);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            response.getOutputStream().print(answer);
+            return;
+        }
+        response.getOutputStream().print(true);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+    private boolean isLogged(HttpServletRequest request) {
+        String userLoginHash = request.getHeader("Authorization");
+        if (userLoginHash != null) {
+            userLoginHash = userLoginHash.substring(6);
+        }
+        return userService.handleLogin(userLoginHash);
+    }
 
 }

@@ -30,18 +30,21 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "User.findByHash", query = "SELECT u FROM User u WHERE u.loginhash = :lh"),
     @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id")})
 public class User implements Serializable {
-    @Lob()
-    @Column(name = "publicKey")
-    private byte[] publicKey;
-    @Lob()
-    @Column(name = "loginhash")
-    private byte[] loginhash;
+
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+
+    @Lob()
+    @Column(name = "publicKey")
+    private byte[] publicKey;
+
+    @Column(name = "loginhash")
+    private String loginhash;
 
     public User() {
     }
@@ -97,11 +100,11 @@ public class User implements Serializable {
         this.publicKey = publicKey;
     }
 
-    public byte[] getLoginhash() {
+    public String getLoginhash() {
         return loginhash;
     }
 
-    public void setLoginhash(byte[] loginhash) {
+    public void setLoginhash(String loginhash) {
         this.loginhash = loginhash;
     }
     

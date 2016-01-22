@@ -54,7 +54,6 @@ public class Persistor {
                 entityManager.close();
             }
         }
-
         return null;
     }
 
@@ -76,7 +75,7 @@ public class Persistor {
         return dto;
     }
     
-    public User checkUserByHash(byte[] hash){
+    public User checkUserByHash(String hash){
         EntityManager entityManager = null;
         List<User> cheques = new ArrayList<User>();
         Query query = null;
@@ -97,4 +96,42 @@ public class Persistor {
         return null;
     }
 
+    public Data getDataId(int id) {
+        EntityManager entityManager = null;
+        List<Data> cheques;
+        Query query ;
+        try {
+            entityManager = factory.createEntityManager();
+            query = entityManager.createNamedQuery("Data.findById");
+            query.setParameter("id", id);
+            cheques = query.getResultList();
+            if (cheques.size() > 0) {
+                return cheques.get(0);
+            }
+        } finally {
+            if (entityManager != null && entityManager.isOpen()) {
+                entityManager.close();
+            }
+        }
+        return null;
+    }
+
+    public List<Data> getAllData() {
+        EntityManager entityManager = null;
+        List<Data> cheques;
+        Query query ;
+        try {
+            entityManager = factory.createEntityManager();
+            query = entityManager.createNamedQuery("Data.findAll");
+            cheques = query.getResultList();
+            if (cheques.size() > 0) {
+                return cheques;
+            }
+        } finally {
+            if (entityManager != null && entityManager.isOpen()) {
+                entityManager.close();
+            }
+        }
+        return null;
+    }
 }

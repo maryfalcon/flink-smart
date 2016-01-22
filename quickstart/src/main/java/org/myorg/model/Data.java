@@ -30,24 +30,34 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Data.findByName", query = "SELECT d FROM Data d WHERE d.name = :name"),
     @NamedQuery(name = "Data.findById", query = "SELECT d FROM Data d WHERE d.id = :id")})
 public class Data implements Serializable {
-    @Basic(optional = false)
-    @Lob
-    @Column(name = "file")
-    private byte[] file;
-    @Lob
-    @Column(name = "hash")
-    private byte[] hash;
-    @Column(name = "extension")
-    private String extension;
-    @Basic(optional = false)
-    @Column(name = "name")
-    private String name;
+
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+
+    @Basic(optional = false)
+    @Column(name = "name")
+    private String name;
+
+    @Basic(optional = false)
+    @Lob
+    @Column(name = "file")
+    private byte[] file;
+
+    @Lob
+    @Column(name = "hash")
+    private byte[] hash;
+
+    @Column(name = "extension")
+    private String extension;
+
+    @Column(name = "owner_id")
+    private Integer ownerId;
+
 
     public Data() {
     }
@@ -60,6 +70,13 @@ public class Data implements Serializable {
         this.id = id;
         this.file = file;
         this.hash = hash;
+    }
+
+    public Data(String name, byte[] file, String extension, Integer ownerId) {
+        this.name = name;
+        this.file = file;
+        this.extension = extension;
+        this.ownerId = ownerId;
     }
 
     public Integer getId() {
@@ -128,5 +145,12 @@ public class Data implements Serializable {
     public void setExtension(String extension) {
         this.extension = extension;
     }
-    
+
+    public Integer getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(Integer ownerId) {
+        this.ownerId = ownerId;
+    }
 }

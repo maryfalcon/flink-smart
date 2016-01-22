@@ -5,52 +5,33 @@
  */
 package org.myorg.quickstart;
 
+import org.myorg.model.Data;
+import org.myorg.persistor.Persistor;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.security.KeyPair;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import java.util.Arrays;
-import java.util.List;
-import javax.net.ssl.HttpsURLConnection;
-import org.apache.flink.api.java.DataSet;
-import org.apache.flink.api.java.ExecutionEnvironment;
-import org.apache.flink.api.java.tuple.Tuple2;
-import org.myorg.model.Data;
-import org.myorg.persistor.Persistor;
 
 public class FlinkApp {
 
-    public static void workWithFile(String filename, String  fileContent, byte[] signature, String extension) throws Exception {
-
+    public static void sendFileSignature(int fileId, byte[] signature) throws Exception {
         //KeyPair kp = RSA.generateKeyPair();//on client
-
-        final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
-        String initString = fileContent;
-        DataSet<String> text = env.fromElements(initString);
+        //final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
+        //DataSet<String> text = env.fromElements(initString);
         //signature = RSA.sign(initString.getBytes(), kp.getPrivate()); //on client
-
-        Data dataToInsert = new Data();
-        dataToInsert.setFile(initString.getBytes());
-        dataToInsert.setHash(signature);
-        dataToInsert.setName(filename);
-        dataToInsert.setExtension(extension);
-        dataToInsert = new Persistor().insertData(dataToInsert);
-        String resp = sendHttpRequest(signature, "datahash", "&fileid="+dataToInsert.getId());
-
+        String resp = sendHttpRequest(signature, "datahash", "&fileid=" + fileId);
     }
-    
-    public static boolean getAccessToEdit(String filename, byte[]  filehash) throws Exception{
+
+    public static boolean checkFileSignature(String filename, byte[] signature) throws Exception {
         Data data = new Persistor().getDataByName(filename);
-        String resp = sendHttpRequest(filehash, "hashcheck", "&fileid="+data.getId());
+        String resp = sendHttpRequest(signature, "hashcheck", "&fileid=" + data.getId());
         return resp.equals("true");
-        
+
     }
 
-    public static String sendHttpRequest(byte[] bytesToSend, String param, String otherParams) throws Exception{
+    public static String sendHttpRequest(byte[] bytesToSend, String param, String otherParams) throws Exception {
         String url = "http://localhost:8080/flinkDB/download";
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -59,7 +40,7 @@ public class FlinkApp {
         con.setRequestProperty("User-Agent", "Mozilla/5.0");
         con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
 
-        String urlParameters = "bytes="+new String(bytesToSend)+"&param="+param+otherParams;
+        String urlParameters = "bytes=" + new String(bytesToSend) + "&param=" + param + otherParams;
 
         con.setDoOutput(true);
         DataOutputStream wr = new DataOutputStream(con.getOutputStream());
