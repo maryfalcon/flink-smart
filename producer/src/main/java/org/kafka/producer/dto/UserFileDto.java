@@ -8,36 +8,24 @@ import java.io.Serializable;
  */
 public class UserFileDto implements Serializable {
 
-    public UserFileDto(Long id, String name, byte[] file, byte[] hash, String extension, Integer ownerId) {
-        this.id = id;
+    public UserFileDto(String name, byte[] file, String extension, Integer ownerId) {
         this.name = name;
         this.file = file;
-        this.hash = hash;
         this.extension = extension;
         this.ownerId = ownerId;
     }
 
     public UserFileDto() {}
 
-    private Long id;
-
     private String name;
 
     private byte[] file;
 
-    private byte[] hash;
+    //private byte[] hash;
 
     private String extension;
 
     private Integer ownerId;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -47,13 +35,13 @@ public class UserFileDto implements Serializable {
         this.name = name;
     }
 
-    public byte[] getHash() {
-        return hash;
-    }
-
-    public void setHash(byte[] hash) {
-        this.hash = hash;
-    }
+//    public byte[] getHash() {
+//        return hash;
+//    }
+//
+//    public void setHash(byte[] hash) {
+//        this.hash = hash;
+//    }
 
     public String getExtension() {
         return extension;

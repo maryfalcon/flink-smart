@@ -53,7 +53,7 @@ public class ReadFromKafka {
 
 		// parse user parameters
         Properties properties = new Properties();
-        properties.load(WriteIntoKafka.class.getResourceAsStream("/application.properties"));
+        properties.load(ReadFromKafka.class.getResourceAsStream("/application.properties"));
 
 		DataStream<UserFileDto> messageStream = env.addSource(new FlinkKafkaConsumer082<>(properties.getProperty(TOPIC_PROPERTY),
 				                                             new UserFileSchema(), properties));

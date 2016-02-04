@@ -11,22 +11,20 @@ import java.util.List;
  */
 public class UserFileKafkaGenerator implements SourceFunction<UserFileDto> {
 
-    public UserFileKafkaGenerator(List<UserFileDto> userFileDtoList) {
-        this.userFileDtos = userFileDtoList;
+    private UserFileDto userFileDto;
+
+    private boolean running = true;
+
+    public UserFileKafkaGenerator(UserFileDto userFileDto) {
+        this.userFileDto = userFileDto;
     }
 
     private UserFileKafkaGenerator() {};
 
-    private List<UserFileDto> userFileDtos;
-
-    private boolean running = true;
-
     @Override
     public void run(SourceContext<UserFileDto> sourceContext) throws Exception {
         if (running) {
-            for (UserFileDto userFileDto : userFileDtos) {
-                sourceContext.collect(userFileDto);
-            }
+            sourceContext.collect(userFileDto);
         }
     }
 
