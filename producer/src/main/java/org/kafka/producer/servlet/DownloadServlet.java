@@ -21,7 +21,7 @@ import java.io.InputStream;
  *
  * @author maryfalcon
  */
-@WebServlet(name = "DownloadServlet", urlPatterns = {"/DownloadServlet"})
+@WebServlet(name = "DownloadServlet", urlPatterns = {"/download"})
 public class DownloadServlet extends HttpServlet {
 
     enum Actions {
@@ -37,8 +37,10 @@ public class DownloadServlet extends HttpServlet {
     private DataService dataService = new DataService();
 
     @Override
+    // TODO Remove redirect to doPost. THis is used only for test
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        doPost(request, response);
     }
 
     @Override
