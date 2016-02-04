@@ -64,9 +64,10 @@ public class CryptoManager {
         PrivateKey prvk = null;
         try {
             inputStream = assetManager.open("pri");
-            int size = inputStream.available();
-            byte [] buffer = new byte[size];
-            inputStream.read(buffer);
+            int size = inputStream.available(); // size of the file in bytes
+            byte [] buffer = new byte[size]; // declare the size of the byte array with
+            // size of the file
+            inputStream.read(buffer); // read file
             String a = new String(buffer);
             prvk = KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec
                     (Base64.decode(a, Base64.DEFAULT)));
@@ -74,9 +75,10 @@ public class CryptoManager {
             inputStream.close();
 
             inputStream = assetManager.open("pub");
-            size = inputStream.available();
-            buffer = new byte[size];
-            inputStream.read(buffer);
+            size = inputStream.available(); // size of the file in bytes
+            buffer = new byte[size]; // declare the size of the byte array with
+            // size of the file
+            inputStream.read(buffer); // read file
             a = new String(buffer);
             pubk = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec
                     (Base64.decode(a, Base64.DEFAULT)));

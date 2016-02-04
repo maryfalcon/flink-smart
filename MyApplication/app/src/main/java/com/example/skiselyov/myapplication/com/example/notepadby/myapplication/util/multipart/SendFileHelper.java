@@ -95,9 +95,9 @@ public final class SendFileHelper {
 
     public static SendFileHelper createMultipartRequest(UserSession currentSession, String serverUrl) throws Exception {
         SendFileHelper multipart = new SendFileHelper(serverUrl, "UTF-8");
-        if (currentSession.isAuthenticated()) {
-            multipart.addHeaderField("Authorization", getBasicAuth(currentSession.getLogin(), currentSession.getPassword()));
-        }
+//        if (currentSession.isAuthenticated()) {
+//            multipart.addHeaderField("Authorization", getBasicAuth(currentSession.getLogin(), currentSession.getPassword()));
+//        }
         multipart.connect();
         return multipart;
     }
