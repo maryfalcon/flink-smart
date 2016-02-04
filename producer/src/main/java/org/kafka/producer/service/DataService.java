@@ -1,5 +1,6 @@
 package org.kafka.producer.service;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.eclipse.jetty.server.Authentication;
 import org.kafka.producer.dto.UserDto;
 import org.kafka.producer.dto.UserFileDto;
@@ -17,13 +18,13 @@ import java.io.InputStream;
  */
 public class DataService {
 
-    private KafkaRemoteSender remoteSender = new KafkaRemoteSender();
+   // private KafkaRemoteSender remoteSender = new KafkaRemoteSender();
 
     private KafkaRemoteReceiver remoteReceiver = new KafkaRemoteReceiver();
 
+
+
     public UserFileDto saveData(HttpServletRequest request, InputStream input) throws Exception {
-        String name = request.getParameter("name");
-        String extension = request.getParameter("extension");
         String userLoginHash = request.getHeader("Authorization");
         if (userLoginHash != null) {
             userLoginHash = userLoginHash.substring(6);
@@ -36,8 +37,9 @@ public class DataService {
             output.write(buffer, 0, length);
         }
         byte[] bytes = output.toByteArray();
-        UserFileDto userFileDto = new UserFileDto(name, bytes, extension, 1);
-        remoteSender.sendFileData(userFileDto);
+        final ObjectMapper objectMapper = new ObjectMapper();
+        UserFileDto userFileDto = objectMapper.readValue(bytes, UserFileDto.class);
+       // remoteSender.sendFileData(userFileDto);
         return null;
     }
 

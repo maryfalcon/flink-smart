@@ -49,16 +49,21 @@ public class DownloadServlet extends HttpServlet {
         String action = request.getParameter("action");
         InputStream input = request.getInputStream();
         boolean isLogged = isLogged(request);
-        if (!isLogged) {
-            response.getOutputStream().print(false);
-            return;
-        }
+//        if (!isLogged) {
+//            response.getOutputStream().print(false);
+//            return;
+//        }
         if (Actions.LOGIN.toString().equals(action)) {
             response.getOutputStream().print(true);
             return;
         } else if (Actions.SEND_FILE.toString().equals(action)) {
-            UserFileDto data = dataService.saveData(request, input);
-            response.getOutputStream().print(data.getId());
+            UserFileDto data = null;
+            try {
+                data = dataService.saveData(request, input);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+           // response.getOutputStream().print(data.getId());
             return;
         } else if (Actions.SEND_SIGN.toString().equals(action)) {
             try {

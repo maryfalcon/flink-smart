@@ -8,40 +8,43 @@ import java.io.Serializable;
  */
 public class UserFileDto implements Serializable {
 
-    public UserFileDto(String name, byte[] file, String extension, Integer ownerId) {
-        this.name = name;
-        this.file = file;
+    private String fileName;
+    private byte[] file;
+    private byte[] signature;
+    private String extension;
+
+    public UserFileDto(String fileName, byte[] buffer, byte[] signed, String extension) {
+        this.fileName = fileName;
+        this.file = buffer;
+        this.signature = signed;
         this.extension = extension;
-        this.ownerId = ownerId;
     }
 
     public UserFileDto() {}
 
-    private String name;
-
-    private byte[] file;
-
-    //private byte[] hash;
-
-    private String extension;
-
-    private Integer ownerId;
-
-    public String getName() {
-        return name;
+    public void setFile(byte[] file) {
+        this.file = file;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSignature(byte[] signature) {
+        this.signature = signature;
     }
 
-//    public byte[] getHash() {
-//        return hash;
-//    }
-//
-//    public void setHash(byte[] hash) {
-//        this.hash = hash;
-//    }
+    public byte[] getSignature() {
+        return signature;
+    }
+
+    public byte[] getFile() {
+        return file;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
 
     public String getExtension() {
         return extension;
@@ -49,21 +52,5 @@ public class UserFileDto implements Serializable {
 
     public void setExtension(String extension) {
         this.extension = extension;
-    }
-
-    public Integer getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(Integer ownerId) {
-        this.ownerId = ownerId;
-    }
-
-    public byte[] getFile() {
-        return file;
-    }
-
-    public void setFile(byte[] file) {
-        this.file = file;
     }
 }
