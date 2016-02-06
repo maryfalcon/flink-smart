@@ -1,15 +1,10 @@
 package org.myorg.persistor;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
 import org.myorg.model.Data;
 import org.myorg.model.User;
 
+import javax.persistence.*;
+import java.util.List;
 public class Persistor {
 
     protected static final String ENTITY_MANAGER_FACTORY_NAME = "org.myorg.quickstart_quickstart_jar_0.1PU";
@@ -21,8 +16,7 @@ public class Persistor {
 
     public Data insertData(Data dto) {
         EntityManager entityManager = null;
-        EntityTransaction transaction = null;
-
+        EntityTransaction transaction;
         try {
             entityManager = factory.createEntityManager();
             transaction = entityManager.getTransaction();
@@ -39,8 +33,8 @@ public class Persistor {
 
     public Data getDataByName(String name) {
         EntityManager entityManager = null;
-        List<Data> cheques = new ArrayList<Data>();
-        Query query = null;
+        List<Data> cheques;
+        Query query;
         try {
             entityManager = factory.createEntityManager();
             query = entityManager.createNamedQuery("Data.findByName");
@@ -59,8 +53,7 @@ public class Persistor {
 
     public User insertUser(User dto) {
         EntityManager entityManager = null;
-        EntityTransaction transaction = null;
-
+        EntityTransaction transaction;
         try {
             entityManager = factory.createEntityManager();
             transaction = entityManager.getTransaction();
@@ -77,8 +70,8 @@ public class Persistor {
     
     public User checkUserByHash(String hash){
         EntityManager entityManager = null;
-        List<User> cheques = new ArrayList<User>();
-        Query query = null;
+        List<User> cheques;
+        Query query;
         try {
             entityManager = factory.createEntityManager();
             query = entityManager.createNamedQuery("User.findByHash");
@@ -119,7 +112,7 @@ public class Persistor {
     public List<Data> getAllData() {
         EntityManager entityManager = null;
         List<Data> cheques;
-        Query query ;
+        Query query;
         try {
             entityManager = factory.createEntityManager();
             query = entityManager.createNamedQuery("Data.findAll");
