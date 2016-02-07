@@ -1,4 +1,4 @@
-package org.kafka.producer.dto;
+package org.myorg.kafka;
 
 import java.io.Serializable;
 import java.util.Date;

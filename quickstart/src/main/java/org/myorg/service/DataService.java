@@ -71,6 +71,11 @@ public class DataService {
             output.write(buffer, 0, length);
         }
         byte[] bytes = output.toByteArray();
-        return FlinkApp.checkFileSignature(fileName, bytes);
+        //return FlinkApp.checkFileSignature(fileName, bytes);
+        //TODO: Change request on client side 
+        String dateHash = request.getParameter("dateHash");
+        String placeHash = request.getParameter("placeHash");
+        return FlinkApp.checkFileSignature(fileName,bytes, dateHash.getBytes(), placeHash.getBytes());
+        
     }
 }

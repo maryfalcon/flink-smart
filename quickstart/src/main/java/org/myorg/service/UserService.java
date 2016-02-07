@@ -26,7 +26,7 @@ public class UserService {
         User user = persistor.checkUserByHash(userLoginHash);
         if (user == null) {
             user = new User();
-            user.setLoginhash(userLoginHash);
+            user.setLoginhash(userLoginHash.getBytes());
             user = persistor.insertUser(user);
         }
         return user != null;

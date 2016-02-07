@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author maryfalcon
+ * @author mary
  */
 @Entity
 @Table(name = "user")
@@ -32,30 +32,23 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-
-    @Lob()
+    @Lob
     @Column(name = "publicKey")
     private byte[] publicKey;
-
+    @Lob
     @Column(name = "loginhash")
-    private String loginhash;
+    private byte[] loginhash;
 
     public User() {
     }
 
     public User(Integer id) {
         this.id = id;
-    }
-
-    public User(Integer id, byte[] publicKey) {
-        this.id = id;
-        this.publicKey = publicKey;
     }
 
     public Integer getId() {
@@ -66,6 +59,21 @@ public class User implements Serializable {
         this.id = id;
     }
 
+    public byte[] getPublicKey() {
+        return publicKey;
+    }
+
+    public void setPublicKey(byte[] publicKey) {
+        this.publicKey = publicKey;
+    }
+
+    public byte[] getLoginhash() {
+        return loginhash;
+    }
+
+    public void setLoginhash(byte[] loginhash) {
+        this.loginhash = loginhash;
+    }
 
     @Override
     public int hashCode() {
@@ -90,22 +98,6 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "org.myorg.model.User[ id=" + id + " ]";
-    }
-
-    public byte[] getPublicKey() {
-        return publicKey;
-    }
-
-    public void setPublicKey(byte[] publicKey) {
-        this.publicKey = publicKey;
-    }
-
-    public String getLoginhash() {
-        return loginhash;
-    }
-
-    public void setLoginhash(String loginhash) {
-        this.loginhash = loginhash;
     }
     
 }

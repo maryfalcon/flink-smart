@@ -7,9 +7,6 @@
         <servlet-name>DownloadServlet</servlet-name>
         <servlet-class>org.myorg.servlet.DownloadServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name></servlet-name>
-    </servlet>
     <servlet-mapping>
         <servlet-name>DownloadServlet</servlet-name>
         <url-pattern>/download</url-pattern>

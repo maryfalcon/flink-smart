@@ -13,9 +13,18 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Date;
+import java.util.List;
+import org.apache.flink.api.common.functions.FilterFunction;
+import org.apache.flink.api.java.DataSet;
+import org.apache.flink.api.java.ExecutionEnvironment;
+import org.apache.flink.api.java.aggregation.Aggregations;
+import org.apache.flink.api.java.operators.DataSource;
+import org.apache.flink.streaming.api.datastream.DataStreamSource;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 public class FlinkApp {
-
+    
     public static void sendFileSignature(int fileId, byte[] signature) throws Exception {
         //KeyPair kp = RSA.generateKeyPair();//on client
         //final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
@@ -23,12 +32,28 @@ public class FlinkApp {
         //signature = RSA.sign(initString.getBytes(), kp.getPrivate()); //on client
         String resp = sendHttpRequest(signature, "datahash", "&fileid=" + fileId);
     }
+    
+    public static void sendFileSignature(int fileId, byte[] signature,byte[] dateHash,byte[] placeHash) throws Exception {
+        
+        String resp = sendHttpRequest(signature, "datahash", "&fileid=" + fileId+"&date="+new String(dateHash)+"&place="+new String(placeHash));
+    }
 
     public static boolean checkFileSignature(String filename, byte[] signature) throws Exception {
         Data data = new Persistor().getDataByName(filename);
         String resp = sendHttpRequest(signature, "hashcheck", "&fileid=" + data.getId());
         return resp.equals("true");
-
+    }
+    
+    public static boolean checkFileSignature(int id, byte[] signature,byte[] dateHash,byte[] placeHash) throws Exception {
+        //Data data = new Persistor().getDataByName(filename);
+        String resp = sendHttpRequest(signature, "hashcheck", "&fileid=" + id+"&date="+new String(dateHash)+"&place="+new String(placeHash));
+        return resp.equals("true");
+    }
+    
+    public static boolean checkFileSignature(String filename, byte[] signature,byte[] dateHash,byte[] placeHash) throws Exception {
+        Data data = new Persistor().getDataByName(filename);
+        String resp = sendHttpRequest(signature, "hashcheck", "&fileid=" + data.getId()+"&date="+new String(dateHash)+"&place="+new String(placeHash));
+        return resp.equals("true");
     }
 
     public static String sendHttpRequest(byte[] bytesToSend, String param, String otherParams) throws Exception {
@@ -60,5 +85,27 @@ public class FlinkApp {
         }
         in.close();
         return response.toString();
+    }
+    
+    public List<Data> getDataWithDate(final Date date) throws Exception{
+       final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
+       DataSet<Data> dataSet = env.fromCollection(new Persistor().getAllData());
+       DataSet<Data> newDataSet = dataSet.filter(new FilterFunction<Data>() {public boolean filter(Data data) { return data.getDate().equals(date); }});
+       return newDataSet.collect();
+    }
+    
+    public List<Data> getDataWithPlace(final String place) throws Exception{
+       final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
+       DataSet<Data> dataSet = env.fromCollection(new Persistor().getAllData());
+       DataSet<Data> newDataSet = dataSet.filter(new FilterFunction<Data>() {public boolean filter(Data data) { return data.getPlace().equals(place); }});
+       return newDataSet.collect();
+    }
+    
+    public List<Data> getDataWithPlaceAndDate(final String place, final Date date) throws Exception{
+       final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
+       DataSet<Data> dataSet = env.fromCollection(new Persistor().getAllData());
+       DataSet<Data> newDataSet = dataSet.filter(new FilterFunction<Data>() {public boolean filter(Data data) { return 
+               data.getPlace().equals(place) && data.getDate().equals(date); }});
+       return newDataSet.collect();
     }
 }

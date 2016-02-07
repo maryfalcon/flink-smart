@@ -31,16 +31,23 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Datahash.findByName", query = "SELECT d FROM Datahash d WHERE d.name = :name"),
     @NamedQuery(name = "Datahash.findByFlinkdbid", query = "SELECT d FROM Datahash d WHERE d.flinkdbid = :flinkdbid")})
 public class Datahash implements Serializable {
+
+    @Basic(optional = false)
+    @Lob
+    @Column(name = "hash")
+    private byte[] hash;
+    @Lob
+    @Column(name = "datehash")
+    private byte[] datehash;
+    @Lob
+    @Column(name = "placehash")
+    private byte[] placehash;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @Lob
-    @Column(name = "hash")
-    private byte[] hash;
     @Column(name = "name")
     private String name;
     @Column(name = "flinkdbid")
@@ -66,13 +73,6 @@ public class Datahash implements Serializable {
         this.id = id;
     }
 
-    public byte[] getHash() {
-        return hash;
-    }
-
-    public void setHash(byte[] hash) {
-        this.hash = hash;
-    }
 
     public String getName() {
         return name;
@@ -113,6 +113,30 @@ public class Datahash implements Serializable {
     @Override
     public String toString() {
         return "org.myorg.model.Datahash[ id=" + id + " ]";
+    }
+
+    public byte[] getHash() {
+        return hash;
+    }
+
+    public void setHash(byte[] hash) {
+        this.hash = hash;
+    }
+
+    public byte[] getDatehash() {
+        return datehash;
+    }
+
+    public void setDatehash(byte[] datehash) {
+        this.datehash = datehash;
+    }
+
+    public byte[] getPlacehash() {
+        return placehash;
+    }
+
+    public void setPlacehash(byte[] placehash) {
+        this.placehash = placehash;
     }
     
 }
