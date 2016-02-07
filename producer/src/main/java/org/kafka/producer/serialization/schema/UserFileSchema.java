@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * author: sereja
  * date: 4.2.16.
  */
-public class UserFileSchema implements DeserializationSchema<UserFileDto>, SerializationSchema<UserFileDto, byte[]> {
+public class UserFileSchema implements DeserializationSchema<UserFileDto>, SerializationSchema<UserFileDto> {
 
     private static final Logger logger = Logger.getLogger(UserFileSchema.class.getName());
 

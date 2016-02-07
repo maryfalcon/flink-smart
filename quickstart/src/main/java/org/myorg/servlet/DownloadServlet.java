@@ -9,10 +9,8 @@ import org.myorg.model.Data;
 import org.myorg.service.DataService;
 import org.myorg.service.UserService;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,8 +21,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author maryfalcon
  */
-@WebServlet(name = "DownloadServlet", urlPatterns = {"/DownloadServlet"})
+@WebServlet(name = "DownloadServlet", urlPatterns = {"/download"})
 public class DownloadServlet extends HttpServlet {
+
+    private static final long serialVersionUID = -7075052875728717573L;
 
     enum Actions {
         LOGIN,
@@ -58,19 +58,7 @@ public class DownloadServlet extends HttpServlet {
                 response.getOutputStream().print(false);
                 return;
             }
-            if (Actions.SEND_FILE.toString().equals(action)) {
-                Data data = dataService.saveData(request, input);
-                response.getOutputStream().print(data.getId());
-                return;
-            } else if (Actions.SEND_SIGN.toString().equals(action)) {
-                try {
-                    String res = dataService.saveSign(request, input);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                response.getOutputStream().print(true);
-                return;
-            } else if (Actions.FILES_LIST.toString().equals(action)) {
+            if (Actions.FILES_LIST.toString().equals(action)) {
                 String fileNames = dataService.getFilesNames();
                 response.getOutputStream().print(fileNames);
                 return;

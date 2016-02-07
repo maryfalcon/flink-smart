@@ -1,5 +1,7 @@
-package org.myorg.kafka;
+package com.example.skiselyov.myapplication.com.example.notepadby.myapplication.serialization.schema;
 
+
+import com.example.skiselyov.myapplication.com.example.notepadby.myapplication.dto.UserFileDto;
 
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.api.java.typeutils.TypeExtractor;

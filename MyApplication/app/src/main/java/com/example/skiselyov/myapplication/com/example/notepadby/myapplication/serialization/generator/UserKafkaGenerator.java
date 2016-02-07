@@ -1,7 +1,8 @@
-package org.kafka.producer.serialization.generator;
+package com.example.skiselyov.myapplication.com.example.notepadby.myapplication.serialization.generator;
+
+import com.example.skiselyov.myapplication.com.example.notepadby.myapplication.dto.UserFileDto;
 
 import org.apache.flink.streaming.api.functions.source.SourceFunction;
-import org.kafka.producer.dto.UserFileDto;
 
 /**
  * author: sereja

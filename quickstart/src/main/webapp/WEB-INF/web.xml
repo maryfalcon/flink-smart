@@ -7,8 +7,17 @@
         <servlet-name>DownloadServlet</servlet-name>
         <servlet-class>org.myorg.servlet.DownloadServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>KafkaServlet</servlet-name>
+        <servlet-class>org.myorg.servlet.KafkaInitServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DownloadServlet</servlet-name>
         <url-pattern>/download</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>KafkaServlet</servlet-name>
+        <url-pattern>/kafka</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -1,4 +1,4 @@
-package org.kafka.producer.serialization.schema;
+package com.example.skiselyov.myapplication.com.example.notepadby.myapplication.serialization.schema;
 
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.api.java.typeutils.TypeExtractor;

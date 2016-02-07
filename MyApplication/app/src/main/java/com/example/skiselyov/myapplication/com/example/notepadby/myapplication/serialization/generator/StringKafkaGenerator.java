@@ -1,4 +1,4 @@
-package org.kafka.producer.serialization.generator;
+package com.example.skiselyov.myapplication.com.example.notepadby.myapplication.serialization.generator;
 
 import org.apache.flink.streaming.api.functions.source.SourceFunction;
 

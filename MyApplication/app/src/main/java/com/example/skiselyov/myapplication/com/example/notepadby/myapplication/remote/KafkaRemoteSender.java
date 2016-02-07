@@ -1,11 +1,13 @@
-package org.kafka.producer.remote;
+package com.example.skiselyov.myapplication.com.example.notepadby.myapplication.remote;
+
+import com.example.skiselyov.myapplication.com.example.notepadby.myapplication.dto.UserFileDto;
+import com.example.skiselyov.myapplication.com.example.notepadby.myapplication.serialization.generator.UserFileKafkaGenerator;
+import com.example.skiselyov.myapplication.com.example.notepadby.myapplication.serialization.schema.UserFileSchema;
+import com.sun.istack.NotNull;
 
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer08;
-import org.kafka.producer.dto.UserFileDto;
-import org.kafka.producer.serialization.generator.UserFileKafkaGenerator;
-import org.kafka.producer.serialization.schema.UserFileSchema;
+import org.apache.flink.streaming.connectors.kafka.KafkaSink;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -21,7 +23,7 @@ public class KafkaRemoteSender {
     private static final Logger logger = Logger.getLogger(KafkaRemoteSender.class.getName());
 
     public static final String SERVERS_PROPERTY = "bootstrap.servers";
-    public static final String TOPIC_PROPERTY = "topic";
+    public static final String TOPIC_PROPERTY = "topic.send";
 
     private Properties properties = new Properties();
 
@@ -35,9 +37,9 @@ public class KafkaRemoteSender {
         }
     }
 
-    public void sendFileData(UserFileDto userFileDto) throws Exception {
+    public void sendFileData(@NotNull UserFileDto userFileDto) throws Exception {
         DataStream<UserFileDto> messageStream = env.addSource(new UserFileKafkaGenerator(userFileDto));
-        messageStream.addSink(new FlinkKafkaProducer08<>(properties.getProperty(SERVERS_PROPERTY),
+        messageStream.addSink(new KafkaSink<>(properties.getProperty(SERVERS_PROPERTY),
                 properties.getProperty(TOPIC_PROPERTY),
                 new UserFileSchema()));
         env.execute();

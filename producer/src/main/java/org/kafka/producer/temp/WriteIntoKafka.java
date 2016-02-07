@@ -17,20 +17,15 @@
 */
 package org.kafka.producer.temp;
 
-import java.util.Date;
-import org.apache.flink.api.common.typeinfo.TypeInformation;
-import org.apache.flink.api.java.typeutils.TypeExtractor;
 import org.apache.flink.api.java.utils.ParameterTool;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.api.functions.source.SourceFunction;
-import org.apache.flink.streaming.connectors.kafka.KafkaSink;
-import org.apache.flink.streaming.util.serialization.DeserializationSchema;
-import org.apache.flink.streaming.util.serialization.SerializationSchema;
-import org.apache.flink.streaming.util.serialization.SimpleStringSchema;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer08;
 import org.kafka.producer.dto.UserFileDto;
 import org.kafka.producer.serialization.generator.UserFileKafkaGenerator;
 import org.kafka.producer.serialization.schema.UserFileSchema;
+
+import java.util.Date;
 
 
 /**
@@ -49,7 +44,7 @@ public class WriteIntoKafka {
 		StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 		ParameterTool parameterTool = ParameterTool.fromArgs(args);
 		DataStream<UserFileDto> messageStream = env.addSource(new UserFileKafkaGenerator(new UserFileDto("fsdf", "fsfsf".getBytes(), "asfsf".getBytes(), "fsfsf", new Date(), "sdfsdf","fsdf".getBytes(),"dfs".getBytes())));
-		messageStream.addSink(new KafkaSink<>(parameterTool.getRequired("bootstrap.servers"),
+		messageStream.addSink(new FlinkKafkaProducer08<>(parameterTool.getRequired("bootstrap.servers"),
 				parameterTool.getRequired("topic"),
 				new UserFileSchema()));
 		env.execute();

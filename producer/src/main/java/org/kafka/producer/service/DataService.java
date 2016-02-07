@@ -1,15 +1,11 @@
 package org.kafka.producer.service;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.eclipse.jetty.server.Authentication;
-import org.kafka.producer.dto.UserDto;
 import org.kafka.producer.dto.UserFileDto;
-import org.kafka.producer.remote.KafkaRemoteReceiver;
 import org.kafka.producer.remote.KafkaRemoteSender;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -18,11 +14,7 @@ import java.io.InputStream;
  */
 public class DataService {
 
-   // private KafkaRemoteSender remoteSender = new KafkaRemoteSender();
-
-    private KafkaRemoteReceiver remoteReceiver = new KafkaRemoteReceiver();
-
-
+    private KafkaRemoteSender remoteSender = new KafkaRemoteSender();
 
     public UserFileDto saveData(HttpServletRequest request, InputStream input) throws Exception {
         String userLoginHash = request.getHeader("Authorization");
@@ -39,32 +31,7 @@ public class DataService {
         byte[] bytes = output.toByteArray();
         final ObjectMapper objectMapper = new ObjectMapper();
         UserFileDto userFileDto = objectMapper.readValue(bytes, UserFileDto.class);
-       // remoteSender.sendFileData(userFileDto);
+        remoteSender.sendFileData(userFileDto);
         return null;
-    }
-
-    public String saveSign(HttpServletRequest request, InputStream input) {
-        String idString = request.getParameter("fileId");
-        if (idString == null) {
-            return null;
-        }
-        int id = Integer.valueOf(idString);
-//        Data data = persistor.getDataId(id);
-//        ByteArrayOutputStream output = new ByteArrayOutputStream();
-//        byte[] buffer = new byte[1024];
-//        for (int length; (length = input.read(buffer)) > -1;) {
-//            output.write(buffer, 0, length);
-//        }
-//        byte[] bytes = output.toByteArray();
-//        FlinkApp.sendFileSignature(data.getId(), bytes);
-        return "Success";
-    }
-
-    public String getFilesNames() {
-        return null;
-    }
-
-    public boolean checkSignature(HttpServletRequest request, InputStream input) {
-        return false;
     }
 }

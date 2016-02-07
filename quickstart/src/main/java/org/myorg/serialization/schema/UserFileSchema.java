@@ -1,11 +1,12 @@
-package org.kafka.producer.serialization.schema;
+package org.myorg.serialization.schema;
+
 
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.api.java.typeutils.TypeExtractor;
 import org.apache.flink.streaming.util.serialization.DeserializationSchema;
 import org.apache.flink.streaming.util.serialization.SerializationSchema;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.kafka.producer.dto.UserDto;
+import org.myorg.dto.UserFileDto;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -15,16 +16,16 @@ import java.util.logging.Logger;
  * author: sereja
  * date: 4.2.16.
  */
-public class UserSchema implements DeserializationSchema<UserDto>, SerializationSchema<UserDto, byte[]> {
+public class UserFileSchema implements DeserializationSchema<UserFileDto>, SerializationSchema<UserFileDto> {
 
     private static final Logger logger = Logger.getLogger(UserFileSchema.class.getName());
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public UserDto deserialize(byte[] bytes) {
+    public UserFileDto deserialize(byte[] bytes) {
         try {
-            return objectMapper.readValue(bytes, UserDto.class);
+            return objectMapper.readValue(bytes, UserFileDto.class);
         } catch (IOException e) {
             logger.log(Level.WARNING, e.getMessage(), e);
             return null;
@@ -32,19 +33,19 @@ public class UserSchema implements DeserializationSchema<UserDto>, Serialization
     }
 
     @Override
-    public boolean isEndOfStream(UserDto userDto) {
+    public boolean isEndOfStream(UserFileDto userFileDto) {
         return false;
     }
 
     @Override
-    public TypeInformation<UserDto> getProducedType() {
-        return TypeExtractor.getForClass(UserDto.class);
+    public TypeInformation<UserFileDto> getProducedType() {
+        return TypeExtractor.getForClass(UserFileDto.class);
     }
 
     @Override
-    public byte[] serialize(UserDto userDto) {
+    public byte[] serialize(UserFileDto userFileDto) {
         try {
-            return objectMapper.writeValueAsBytes(userDto);
+            return objectMapper.writeValueAsBytes(userFileDto);
         } catch (IOException e) {
             logger.log(Level.WARNING, e.getMessage(), e);
             return null;

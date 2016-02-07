@@ -24,10 +24,11 @@ import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer082;
 
 import java.util.Properties;
 import org.apache.flink.streaming.api.functions.sink.SinkFunction;
+import org.myorg.dto.UserFileDto;
 import org.myorg.model.Data;
 import org.myorg.persistor.Persistor;
 import org.myorg.quickstart.FlinkApp;
-import org.myorg.service.DataService;
+import org.myorg.serialization.schema.UserFileSchema;
 
 /**
  * Simple example on how to read with a Kafka consumer
