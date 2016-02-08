@@ -1,11 +1,9 @@
 package com.example.skiselyov.myapplication.com.example.notepadby.myapplication.dto;
 
 import java.io.Serializable;
-import java.util.Calendar;
 
 /**
- * author: sereja
- * date: 4.2.16.
+ * Created by s.kiselyov on 04.02.2016.
  */
 public class UserFileDto implements Serializable {
 
@@ -13,8 +11,6 @@ public class UserFileDto implements Serializable {
     private byte[] file;
     private byte[] signature;
     private String extension;
-    private Calendar createdDate;
-    private String place;
 
     public UserFileDto(String fileName, byte[] buffer, byte[] signed, String extension) {
         this.fileName = fileName;
@@ -22,8 +18,6 @@ public class UserFileDto implements Serializable {
         this.signature = signed;
         this.extension = extension;
     }
-
-    public UserFileDto() {}
 
     public void setFile(byte[] file) {
         this.file = file;

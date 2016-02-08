@@ -58,9 +58,7 @@ public class MainActivity extends ListActivity {
         new CheckSignatureTask().execute(data);
     }
 
-    private class CheckSignatureTask extends AsyncTask<String, Void, Void>
-    {
-
+    private class CheckSignatureTask extends AsyncTask<String, Void, Void> {
         @Override
         protected Void doInBackground(String... params) {
             KeyPair keyPair = CryptoManager.loadPair(getApplicationContext());
@@ -95,8 +93,7 @@ public class MainActivity extends ListActivity {
         alertDialog.show();
     }
 
-    private class GetFilesTask extends AsyncTask<Void, Void, Void>
-    {
+    private class GetFilesTask extends AsyncTask<Void, Void, Void> {
         private RSSListAdaptor rssadaptor = null;
 
         @Override
@@ -105,20 +102,7 @@ public class MainActivity extends ListActivity {
             itemlist = new ArrayList<>();
             Collections.addAll(itemlist, result.split(":"));
             rssadaptor = new RSSListAdaptor(MainActivity.this, R.layout.rssitemview,itemlist);
-
             return null;
-        }
-
-        @Override
-        protected void onCancelled() {
-            super.onCancelled();
-        }
-
-        @Override
-        protected void onPreExecute() {
-
-
-            super.onPreExecute();
         }
 
         @Override

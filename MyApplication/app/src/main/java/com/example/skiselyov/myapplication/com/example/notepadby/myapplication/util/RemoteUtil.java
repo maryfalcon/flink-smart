@@ -101,7 +101,7 @@ public class RemoteUtil {
                 StringBuilder urlBuilder = new StringBuilder();
                 UserFileDto userFileDto = new UserFileDto(sourceFile.getName(), buffer, signed, URLConnection.guessContentTypeFromName(sourceFile.getName()));
                 urlBuilder.append(serverIP)
-                        .append(Constants.CONST_SERVLET_PATH).append(Constants.QUESTION).append("action").append(Constants.EQUALS).append(Actions.SEND_FILE);
+                        .append(Constants.CONST_PRODUCER_SERVLET).append(Constants.QUESTION).append("action").append(Constants.EQUALS).append(Actions.SEND_FILE);
                 String response = SendFileHelper
                         .createMultipartRequest(userSession, urlBuilder.toString())
                         .writeBytes(mapper.writeValueAsBytes(userFileDto))
@@ -118,19 +118,19 @@ public class RemoteUtil {
     }
 
     public static boolean remoteLogin(UserSession userSession) {
-        String response = sendPost(serverIP + Constants.CONST_SERVLET_PATH + Constants.QUESTION + "action" + Constants.EQUALS + Actions.LOGIN, "", userSession);
+        String response = sendPost(serverIP + Constants.CONST_QUICKSTART_SERVLET + Constants.QUESTION + "action" + Constants.EQUALS + Actions.LOGIN, "", userSession);
         return Boolean.TRUE.equals(Boolean.parseBoolean(response));
     }
 
     public static String getFilesList(UserSession userSession) {
-        return sendPost(serverIP + Constants.CONST_SERVLET_PATH + Constants.QUESTION + "action" + Constants.EQUALS + Actions.FILES_LIST, "", userSession);
+        return sendPost(serverIP + Constants.CONST_QUICKSTART_SERVLET + Constants.QUESTION + "action" + Constants.EQUALS + Actions.FILES_LIST, "", userSession);
     }
 
     public static Void checkSignature(String sourceFileUri, UserSession userSession, KeyPair keyPair) throws Exception {
         StringBuilder urlBuilder = new StringBuilder();
         //ObjectMapper objectMapper = new ObjectMapper();
         urlBuilder.append(serverIP)
-                .append(Constants.CONST_SERVLET_PATH)
+                .append(Constants.CONST_QUICKSTART_SERVLET)
                 .append(Constants.QUESTION).append("action").append(Constants.EQUALS).append(Actions.UPDATE)
                 .append(Constants.AMPERSAND).append("fileName").append(Constants.EQUALS).append(sourceFileUri);
         int bytesAvailable;

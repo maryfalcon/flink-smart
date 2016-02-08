@@ -16,18 +16,12 @@ import com.example.skiselyov.myapplication.com.example.notepadby.myapplication.u
 
 public class LoginActivity extends Activity {
 
-    private String login;
-    private String password;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         Button loginButton = (Button) findViewById(R.id.loginButton);
         loginButton.setOnClickListener(loginButtonOnClickListener);
-
-        //  Button registerButtonLink = (Button)findViewById(R.id.registerLink);
-        //  registerButtonLink.setOnClickListener(registerButtonLinkOnClick);
     }
 
     public View.OnClickListener loginButtonOnClickListener = new View.OnClickListener() {
@@ -35,19 +29,11 @@ public class LoginActivity extends Activity {
         public void onClick(View v) {
             EditText editLogin = (EditText) findViewById(R.id.editLogin);
             EditText editPassword = (EditText) findViewById(R.id.editPassword);
-            login = editLogin.getText().toString();
-            password = editPassword.getText().toString();
+            String login = editLogin.getText().toString();
+            String password = editPassword.getText().toString();
             login(login, password);
         }
     };
-
-//    public View.OnClickListener registerButtonLinkOnClick = new View.OnClickListener() {
-//        @Override
-//        public void onClick(View v) {
-//            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-//            startActivity(intent);
-//        }
-//    };
 
     private void login(String login, String password) {
         new RemoteLogger().execute(login, password);
@@ -88,7 +74,6 @@ public class LoginActivity extends Activity {
             if (userSession == null) {
                 return;
             }
-            //new BackgroundWorker().execute();
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             intent.putExtra(Constants.CONST_USER_EXTRA, userSession);
             startActivity(intent);

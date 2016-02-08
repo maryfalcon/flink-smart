@@ -6,10 +6,8 @@ public class Constants {
     /**
      * Servlet urls
      */
-    public static final String CONST_SERVLET_PATH = ":8083/producer/download";
-    public static final String CONST_LOGIN_ACTION = "login";
-    public static final String CONST_FILES_LIST_ACTION = "files";
-    public static final String CONST_UPLOAD_FILE = "upload";
+    public static final String CONST_QUICKSTART_SERVLET = ":8082/quickstart/download";
+    public static final String CONST_PRODUCER_SERVLET = ":8083/producer/download";
 
     /**
      * Application constants
