@@ -93,9 +93,8 @@
             <dependencies>
 				<dependency>
 					<groupId>org.apache.flink</groupId>
-					<artifactId>flink-connector-kafka</artifactId>
-					<version>${flink.version}</version>
-					<scope>provided</scope>
+					<artifactId>flink-connector-kafka-0.8_2.10</artifactId>
+					<version>1.0-SNAPSHOT</version>
 				</dependency>
             </dependencies>
         </profile>

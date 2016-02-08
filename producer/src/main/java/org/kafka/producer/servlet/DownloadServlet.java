@@ -5,7 +5,7 @@
  */
 package org.kafka.producer.servlet;
 
-import org.kafka.producer.dto.UserFileDto;
+import org.kafka.producer.remote.RemoteUtil;
 import org.kafka.producer.service.DataService;
 import org.kafka.producer.service.UserService;
 
@@ -18,7 +18,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- *
  * @author maryfalcon
  */
 @WebServlet(name = "DownloadServlet", urlPatterns = {"/download"})
@@ -45,17 +44,18 @@ public class DownloadServlet extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("action");
         InputStream input = request.getInputStream();
-        if (Actions.LOGIN.toString().equals(action)) {
-            response.getOutputStream().print(true);
-            return;
-        } else if (Actions.SEND_FILE.toString().equals(action)) {
+        if (Actions.SEND_FILE.toString().equals(action)) {
             try {
-                dataService.saveData(request, input);
+                String isLogged = RemoteUtil.sendHttpRequest(request);
+                if ("true".equals(isLogged)) {
+                    dataService.saveData(request, input);
+                    response.getOutputStream().print(true);
+                } else {
+                    response.getOutputStream().print(false);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return;
         }
-        response.getOutputStream().print(true);
     }
 }

@@ -28,8 +28,6 @@ public class DownloadServlet extends HttpServlet {
 
     enum Actions {
         LOGIN,
-        SEND_FILE,
-        SEND_SIGN,
         UPDATE,
         FILES_LIST
     }

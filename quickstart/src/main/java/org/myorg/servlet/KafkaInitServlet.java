@@ -20,7 +20,6 @@ import java.util.concurrent.Executor;
 public class KafkaInitServlet extends HttpServlet {
     private static final long serialVersionUID = -4820467108172468488L;
 
-    public static final String SERVERS_PROPERTY = "bootstrap.servers";
     public static final String TOPIC_PROPERTY = "topic";
 
     @Override
