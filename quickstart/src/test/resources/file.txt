@@ -1,0 +1,232 @@
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdf
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdf
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdfghhgfj   dfsfsd
+                 fsdfsdf
+                 fsdfsdf sfdsf sdf
+                 ghhgfj   dfsfsd
+                 fsdfsdf
+                 fsdfsdf sfdsf sdf
+bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];
+//                int read = fileInputStream.read(buffer, 0, bytesAvailable);
+bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];
+//                int read = fileInputStream.read(buffer, 0, bytesAvailable);
+bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];
+//                int read = fileInputStream.read(buffer, 0, bytesAvailable);bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];                                                                             //                int read = fileInputStream.read(buffer, 0, bytesAvailable);
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdf
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdf
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdfghhgfj   dfsfsd
+                 fsdfsdf
+                 fsdfsdf sfdsf sdf
+                 ghhgfj   dfsfsd
+                 fsdfsdf
+                 fsdfsdf sfdsf sdf
+bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];
+//                int read = fileInputStream.read(buffer, 0, bytesAvailable);
+bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];
+//                int read = fileInputStream.read(buffer, 0, bytesAvailable);
+bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];
+//                int read = fileInputStream.read(buffer, 0, bytesAvailable);bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];                                                                             //                int read = fileInputStream.read(buffer, 0, bytesAvailable);
+
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdf
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdf
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdfghhgfj   dfsfsd
+                 fsdfsdf
+                 fsdfsdf sfdsf sdf
+                 ghhgfj   dfsfsd
+                 fsdfsdf
+                 fsdfsdf sfdsf sdf
+bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];
+//                int read = fileInputStream.read(buffer, 0, bytesAvailable);
+bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];
+//                int read = fileInputStream.read(buffer, 0, bytesAvailable);
+bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];
+//                int read = fileInputStream.read(buffer, 0, bytesAvailable);bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];                                                                             //                int read = fileInputStream.read(buffer, 0, bytesAvailable);
+
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdf
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdf
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdfghhgfj   dfsfsd
+                 fsdfsdf
+                 fsdfsdf sfdsf sdf
+                 ghhgfj   dfsfsd
+                 fsdfsdf
+                 fsdfsdf sfdsf sdf
+bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];
+//                int read = fileInputStream.read(buffer, 0, bytesAvailable);
+bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];
+//                int read = fileInputStream.read(buffer, 0, bytesAvailable);
+bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];
+//                int read = fileInputStream.read(buffer, 0, bytesAvailable);bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];                                                                             //                int read = fileInputStream.read(buffer, 0, bytesAvailable);
+
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdf
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdf
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdfghhgfj   dfsfsd
+                 fsdfsdf
+                 fsdfsdf sfdsf sdf
+                 ghhgfj   dfsfsd
+                 fsdfsdf
+                 fsdfsdf sfdsf sdf
+bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];
+//                int read = fileInputStream.read(buffer, 0, bytesAvailable);
+bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];
+//                int read = fileInputStream.read(buffer, 0, bytesAvailable);
+bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];
+//                int read = fileInputStream.read(buffer, 0, bytesAvailable);bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];                                                                             //                int read = fileInputStream.read(buffer, 0, bytesAvailable);
+
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdf
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdf
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdfghhgfj   dfsfsd
+                 fsdfsdf
+                 fsdfsdf sfdsf sdf
+                 ghhgfj   dfsfsd
+                 fsdfsdf
+                 fsdfsdf sfdsf sdf
+bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];
+//                int read = fileInputStream.read(buffer, 0, bytesAvailable);
+bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];
+//                int read = fileInputStream.read(buffer, 0, bytesAvailable);
+bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];
+//                int read = fileInputStream.read(buffer, 0, bytesAvailable);bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];                                                                             //                int read = fileInputStream.read(buffer, 0, bytesAvailable);
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdf
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdf
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdfghhgfj   dfsfsd
+                 fsdfsdf
+                 fsdfsdf sfdsf sdf
+                 ghhgfj   dfsfsd
+                 fsdfsdf
+                 fsdfsdf sfdsf sdf
+bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];
+//                int read = fileInputStream.read(buffer, 0, bytesAvailable);
+bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];
+//                int read = fileInputStream.read(buffer, 0, bytesAvailable);
+bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];
+//                int read = fileInputStream.read(buffer, 0, bytesAvailable);bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];                                                                             //                int read = fileInputStream.read(buffer, 0, bytesAvailable);
+
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdf
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdf
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdfghhgfj   dfsfsd
+                 fsdfsdf
+                 fsdfsdf sfdsf sdf
+                 ghhgfj   dfsfsd
+                 fsdfsdf
+                 fsdfsdf sfdsf sdf
+bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];
+//                int read = fileInputStream.read(buffer, 0, bytesAvailable);
+bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];
+//                int read = fileInputStream.read(buffer, 0, bytesAvailable);
+bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];
+//                int read = fileInputStream.read(buffer, 0, bytesAvailable);bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];                                                                             //                int read = fileInputStream.read(buffer, 0, bytesAvailable);
+
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdf
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdf
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdfghhgfj   dfsfsd
+                 fsdfsdf
+                 fsdfsdf sfdsf sdf
+                 ghhgfj   dfsfsd
+                 fsdfsdf
+                 fsdfsdf sfdsf sdf
+bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];
+//                int read = fileInputStream.read(buffer, 0, bytesAvailable);
+bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];
+//                int read = fileInputStream.read(buffer, 0, bytesAvailable);
+bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];
+//                int read = fileInputStream.read(buffer, 0, bytesAvailable);bytesAvailable = fileInputStream.available();
+//                buffer = new byte[bytesAvailable];                                                                             //                int read = fileInputStream.read(buffer, 0, bytesAvailable);
+
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdf
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdf
+ghhgfj   dfsfsd
+fsdfsdf
+fsdfsdf sfdsf sdfghhgfj
