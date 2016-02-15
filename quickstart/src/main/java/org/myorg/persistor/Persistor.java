@@ -75,7 +75,7 @@ public class Persistor {
         try {
             entityManager = factory.createEntityManager();
             query = entityManager.createNamedQuery("User.findByHash");
-            query.setParameter("lh", hash);
+            query.setParameter("lh", hash.getBytes());
             cheques = query.getResultList();
             if (cheques.size() > 0) {
                 return cheques.get(0);
@@ -89,7 +89,7 @@ public class Persistor {
         return null;
     }
 
-    public Data getDataId(int id) {
+    public Data getDataById(int id) {
         EntityManager entityManager = null;
         List<Data> cheques;
         Query query ;

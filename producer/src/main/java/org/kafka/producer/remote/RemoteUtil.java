@@ -21,6 +21,7 @@ public class RemoteUtil {
         HttpURLConnection con = (HttpURLConnection) urlObject.openConnection();
         con.setRequestMethod("POST");
         con.addRequestProperty("Authorization", request.getHeader("Authorization"));
+        con.setDoOutput(true);
         con.connect();
         DataOutputStream wr = new DataOutputStream(con.getOutputStream());
         wr.writeBytes("");
