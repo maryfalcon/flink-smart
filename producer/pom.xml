@@ -5,9 +5,9 @@
     <groupId>org.kafka.producer</groupId>
     <artifactId>producer</artifactId>
     <version>0.1</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
-    <name>Flink Quickstart Job</name>
+    <name>Producer</name>
     <url>http://www.myorganization.org</url>
 
     <properties>

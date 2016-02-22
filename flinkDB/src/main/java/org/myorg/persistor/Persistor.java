@@ -9,21 +9,16 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import org.myorg.model.Datahash;
 
-
-
-
-
 public class Persistor {
 
-	protected static final String ENTITY_MANAGER_FACTORY_NAME = "org.myorg.flinkDB_flinkDB_war_0.1PU";
-	protected EntityManagerFactory factory;
+    protected static final String ENTITY_MANAGER_FACTORY_NAME = "org.myorg.flinkDB_flinkDB_war_0.1PU";
+    protected EntityManagerFactory factory;
 
-	public Persistor() {
-		factory = Persistence.createEntityManagerFactory(ENTITY_MANAGER_FACTORY_NAME);
-	}
-        
-        
-        public Datahash insertDatahash(Datahash dto){
+    public Persistor() {
+        factory = Persistence.createEntityManagerFactory(ENTITY_MANAGER_FACTORY_NAME);
+    }
+
+    public Datahash insertDatahash(Datahash dto) {
         EntityManager entityManager = null;
         EntityTransaction transaction = null;
 
@@ -40,9 +35,9 @@ public class Persistor {
         }
         return dto;
     }
-        
-        public Datahash getDatahashByFileId(int fileid){
-            EntityManager entityManager = null;
+
+    public Datahash getDatahashByFileId(int fileid) {
+        EntityManager entityManager = null;
         List<Datahash> cheques = new ArrayList<Datahash>();
         Query query = null;
         try {
@@ -50,8 +45,9 @@ public class Persistor {
             query = entityManager.createNamedQuery("Datahash.findByFlinkdbid");
             query.setParameter("flinkdbid", fileid);
             cheques = query.getResultList();
-            if(cheques.size()>0)
+            if (cheques.size() > 0) {
                 return cheques.get(0);
+            }
         } finally {
             if (entityManager != null && entityManager.isOpen()) {
                 entityManager.close();
@@ -59,9 +55,30 @@ public class Persistor {
         }
 
         return null;
+    }
+
+    public Datahash getDatahashByUuid(String fileid) {
+        EntityManager entityManager = null;
+        List<Datahash> cheques = new ArrayList<Datahash>();
+        Query query = null;
+        try {
+            entityManager = factory.createEntityManager();
+            query = entityManager.createNamedQuery("Datahash.findByFlinkdbuuid");
+            query.setParameter("flinkdbuuid", fileid);
+            cheques = query.getResultList();
+            if (cheques.size() > 0) {
+                return cheques.get(0);
+            }
+        } finally {
+            if (entityManager != null && entityManager.isOpen()) {
+                entityManager.close();
+            }
         }
-        
-        public Datahash updateDatahash(Datahash dto){
+
+        return null;
+    }
+
+    public Datahash updateDatahash(Datahash dto) {
         EntityManager entityManager = null;
         EntityTransaction transaction = null;
 
@@ -78,5 +95,5 @@ public class Persistor {
         }
         return dto;
     }
-        
+
 }

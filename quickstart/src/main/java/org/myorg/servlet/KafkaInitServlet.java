@@ -5,7 +5,6 @@ import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer082;
 import org.myorg.dto.UserFileDto;
-import org.myorg.model.Data;
 import org.myorg.serialization.schema.UserFileSchema;
 import org.myorg.service.DataService;
 
@@ -15,6 +14,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.Properties;
 import java.util.concurrent.Executor;
+import org.myorg.cassandra.Data;
 
 /**
  * User: NotePad.by

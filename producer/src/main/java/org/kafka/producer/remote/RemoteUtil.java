@@ -1,6 +1,5 @@
 package org.kafka.producer.remote;
 
-import com.sun.deploy.net.HttpRequest;
 import com.sun.jersey.core.util.Base64;
 
 import javax.servlet.http.HttpServletRequest;

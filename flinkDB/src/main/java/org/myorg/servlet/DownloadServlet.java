@@ -83,11 +83,11 @@ public class DownloadServlet extends HttpServlet {
         String placeHash = request.getParameter("place");
 
         if (((String) request.getParameter("param")).equals("datahash")) {
-            int fileid = Integer.valueOf(request.getParameter("fileid")).intValue();
-            Datahash dh = pers.getDatahashByFileId(fileid);
+            String fileid = request.getParameter("uuid");
+            Datahash dh = pers.getDatahashByUuid(fileid);
             if (dh == null) {
                 dh = new Datahash();
-                dh.setFlinkdbid(fileid);
+                dh.setFlinkdbuuid(fileid);
                 dh.setHash(byteString.getBytes());
                 dh.setDatehash(dateHash.getBytes());
                 dh.setPlacehash(placeHash.getBytes());
@@ -101,8 +101,8 @@ public class DownloadServlet extends HttpServlet {
             }
         }
         if (((String) request.getParameter("param")).equals("hashcheck")) {
-            int fileid = Integer.valueOf(request.getParameter("fileid")).intValue();
-            Datahash dh = pers.getDatahashByFileId(fileid);
+            String fileid = request.getParameter("fileid");
+            Datahash dh = pers.getDatahashByUuid(fileid);
             if(dh!=null && Arrays.equals(byteString.getBytes(), dh.getHash()) && Arrays.equals(dateHash.getBytes(), dh.getDatehash()) && Arrays.equals(placeHash.getBytes(), dh.getPlacehash()))
                 response.getOutputStream().println("true");
             else

@@ -29,6 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Datahash.findAll", query = "SELECT d FROM Datahash d"),
     @NamedQuery(name = "Datahash.findById", query = "SELECT d FROM Datahash d WHERE d.id = :id"),
     @NamedQuery(name = "Datahash.findByName", query = "SELECT d FROM Datahash d WHERE d.name = :name"),
+    @NamedQuery(name = "Datahash.findByFlinkdbuuid", query = "SELECT d FROM Datahash d WHERE d.flinkdbuuid = :flinkdbuuid"),
     @NamedQuery(name = "Datahash.findByFlinkdbid", query = "SELECT d FROM Datahash d WHERE d.flinkdbid = :flinkdbid")})
 public class Datahash implements Serializable {
 
@@ -42,6 +43,8 @@ public class Datahash implements Serializable {
     @Lob
     @Column(name = "placehash")
     private byte[] placehash;
+    @Column(name = "flinkdbuuid")
+    private String flinkdbuuid;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -137,6 +140,14 @@ public class Datahash implements Serializable {
 
     public void setPlacehash(byte[] placehash) {
         this.placehash = placehash;
+    }
+
+    public String getFlinkdbuuid() {
+        return flinkdbuuid;
+    }
+
+    public void setFlinkdbuuid(String flinkdbuuid) {
+        this.flinkdbuuid = flinkdbuuid;
     }
     
 }

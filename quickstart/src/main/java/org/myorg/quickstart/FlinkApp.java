@@ -37,6 +37,11 @@ public class FlinkApp {
         
         String resp = sendHttpRequest(signature, "datahash", "&fileid=" + fileId+"&date="+new String(dateHash)+"&place="+new String(placeHash));
     }
+    
+    public static void sendFileSignature(String fileId, byte[] signature,byte[] dateHash,byte[] placeHash) throws Exception {
+        
+        String resp = sendHttpRequest(signature, "datahash", "&uuid=" + fileId+"&date="+new String(dateHash)+"&place="+new String(placeHash));
+    }
 
     public static boolean checkFileSignature(String filename, byte[] signature) throws Exception {
         Data data = new Persistor().getDataByName(filename);
@@ -50,9 +55,9 @@ public class FlinkApp {
         return resp.equals("true");
     }
     
-    public static boolean checkFileSignature(String filename, byte[] signature,byte[] dateHash,byte[] placeHash) throws Exception {
-        Data data = new Persistor().getDataByName(filename);
-        String resp = sendHttpRequest(signature, "hashcheck", "&fileid=" + data.getId()+"&date="+new String(dateHash)+"&place="+new String(placeHash));
+    public static boolean checkFileSignature(String uuid, byte[] signature,byte[] dateHash,byte[] placeHash) throws Exception {
+        
+        String resp = sendHttpRequest(signature, "hashcheck", "&fileid=" + uuid+"&date="+new String(dateHash)+"&place="+new String(placeHash));
         return resp.equals("true");
     }
 
