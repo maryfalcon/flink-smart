@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
 -- Server version:               5.7.10-log - MySQL Community Server (GPL)
--- Server OS:                    Win32
+-- Server OS:                    Win64
 -- HeidiSQL Version:             9.3.0.4984
 -- --------------------------------------------------------
 
@@ -11,7 +11,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Dumping database structure for flinkhashdb
-CREATE DATABASE IF NOT EXISTS `flinkhashdb` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE IF NOT EXISTS `flinkhashdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `flinkhashdb`;
 
 
@@ -23,15 +23,12 @@ CREATE TABLE IF NOT EXISTS `datahash` (
   `placehash` blob,
   `name` varchar(50) DEFAULT NULL,
   `flinkdbid` int(10) DEFAULT NULL,
+  `flinkdbuuid` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=496 DEFAULT CHARSET=latin1;
 
--- Dumping data for table flinkhashdb.datahash: ~3 rows (approximately)
+-- Dumping data for table flinkhashdb.datahash: ~0 rows (approximately)
 /*!40000 ALTER TABLE `datahash` DISABLE KEYS */;
-INSERT INTO `datahash` (`id`, `hash`, `datehash`, `placehash`, `name`, `flinkdbid`) VALUES
-	(13, _binary 0x6173667366, _binary 0x66736466, _binary 0x646673, NULL, 29),
-	(14, _binary 0x6173667366, _binary 0x66736466, _binary 0x646673, NULL, 30),
-	(15, _binary 0x6173667366, _binary 0x66736466, _binary 0x646673, NULL, 31);
 /*!40000 ALTER TABLE `datahash` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
