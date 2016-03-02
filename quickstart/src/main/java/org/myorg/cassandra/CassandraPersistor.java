@@ -21,8 +21,8 @@ public class CassandraPersistor {
     private final static String KEYSPACE = "flinkdb";
 
     public CassandraPersistor() {
-        cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
-        session = cluster.connect("flinkdb");
+        cluster = Cluster.builder().addContactPoint(CONTACT_POINT).build();
+        session = cluster.connect(KEYSPACE);
     }
 
     public Data insertData(Data data) {
@@ -38,18 +38,18 @@ public class CassandraPersistor {
     }
 
     public Data getDataByName(String name) {
-        Statement statement = QueryBuilder.select().from("flinkdb", "data") .where(eq("name", name));
+        Statement statement = QueryBuilder.select().from(KEYSPACE, "data") .where(eq("name", name));
         return getDataFromRow(session.execute(statement).one());
     }
 
     public Data getDataById(String id) {
-        Statement statement = QueryBuilder.select().from("flinkdb", "data") .where(eq("id", UUID.fromString(id)));
+        Statement statement = QueryBuilder.select().from(KEYSPACE, "data") .where(eq("id", UUID.fromString(id)));
         return getDataFromRow(session.execute(statement).one());
     }
 
     public List<Data> getAllData() {
         List<Data> dataList = new ArrayList<>();
-        Statement statement = QueryBuilder.select().all().from("flinkdb", "data");
+        Statement statement = QueryBuilder.select().all().from(KEYSPACE, "data");
         for (Row row : session.execute(statement).all()) {
             dataList.add(getDataFromRow(row));
         }

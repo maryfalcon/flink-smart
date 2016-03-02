@@ -1,7 +1,5 @@
 package org.kafka.producer.remote;
 
-import com.sun.jersey.core.util.Base64;
-
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -16,7 +14,7 @@ import java.net.URL;
 public class RemoteUtil {
 
     public static String sendHttpRequest(HttpServletRequest request) throws Exception {
-        URL urlObject = new URL("http://localhost:8081/quickstart/download?action=LOGIN");
+        URL urlObject = new URL("http://localhost:8086/download?action=LOGIN");
         HttpURLConnection con = (HttpURLConnection) urlObject.openConnection();
         con.setRequestMethod("POST");
         con.addRequestProperty("Authorization", request.getHeader("Authorization"));

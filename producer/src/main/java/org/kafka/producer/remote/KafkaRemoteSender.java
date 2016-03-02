@@ -2,7 +2,7 @@ package org.kafka.producer.remote;
 
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer08;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer;
 import org.kafka.producer.dto.UserFileDto;
 import org.kafka.producer.serialization.generator.UserFileKafkaGenerator;
 import org.kafka.producer.serialization.schema.UserFileSchema;
@@ -37,7 +37,7 @@ public class KafkaRemoteSender {
 
     public void sendFileData(UserFileDto userFileDto) throws Exception {
         DataStream<UserFileDto> messageStream = env.addSource(new UserFileKafkaGenerator(userFileDto));
-        messageStream.addSink(new FlinkKafkaProducer08<>(properties.getProperty(SERVERS_PROPERTY),
+        messageStream.addSink(new FlinkKafkaProducer<>(properties.getProperty(SERVERS_PROPERTY),
                 properties.getProperty(TOPIC_PROPERTY),
                 new UserFileSchema()));
         env.execute();
