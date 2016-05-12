@@ -5,6 +5,7 @@ import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer082;
 import org.myorg.dto.UserFileDto;
+import org.myorg.model.Data;
 import org.myorg.serialization.schema.UserFileSchema;
 import org.myorg.service.DataService;
 
@@ -14,7 +15,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.Properties;
 import java.util.concurrent.Executor;
-import org.myorg.cassandra.Data;
 
 /**
  * User: NotePad.by
@@ -43,11 +43,15 @@ public class KafkaInitServlet extends HttpServlet implements Serializable {
                 messageStream.map(new MapFunction<UserFileDto, String>() {
                     private static final long serialVersionUID = -6867736771747690202L;
                     @Override
-                    public String map(UserFileDto userFileDto) throws Exception {
-                        DataService dataService = new DataService();
-                        long currentMilliseconds = System.currentTimeMillis();
-                        Data savedData = dataService.saveData(userFileDto);
-                        return currentMilliseconds + " Kafka and Flink says: " + savedData.getId();
+                    public String map(UserFileDto userFileDto) {
+                        try {
+                            DataService dataService = new DataService();
+                            long currentMilliseconds = System.currentTimeMillis();
+                            Data savedData = dataService.saveData(userFileDto);
+                            return currentMilliseconds + " Kafka and Flink says: " + savedData.getId();
+                        } catch (Exception e) {
+                            return "";
+                        }
                     }
                 }).print();
                 try {

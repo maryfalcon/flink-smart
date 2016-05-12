@@ -28,7 +28,8 @@ public class Client {
     public static final int DATA_TO_SIGN_SIZE = 10000;
 
     public static void main(String[] args) throws Exception {
-        new Client().getFilesList();
+        //new Client().getFilesList();
+        new Client().sendFile();
     }
 
     public void getFilesList() throws IOException {

@@ -5,32 +5,22 @@
  */
 package org.myorg.model;
 
-import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 /**
- *
  * @author maryfalcon
  */
 @Entity
 @Table(name = "datahash")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Datahash.findAll", query = "SELECT d FROM Datahash d"),
-    @NamedQuery(name = "Datahash.findById", query = "SELECT d FROM Datahash d WHERE d.id = :id"),
-    @NamedQuery(name = "Datahash.findByName", query = "SELECT d FROM Datahash d WHERE d.name = :name"),
-    @NamedQuery(name = "Datahash.findByFlinkdbuuid", query = "SELECT d FROM Datahash d WHERE d.flinkdbuuid = :flinkdbuuid"),
-    @NamedQuery(name = "Datahash.findByFlinkdbid", query = "SELECT d FROM Datahash d WHERE d.flinkdbid = :flinkdbid")})
+        @NamedQuery(name = "Datahash.findAll", query = "SELECT d FROM Datahash d"),
+        @NamedQuery(name = "Datahash.findById", query = "SELECT d FROM Datahash d WHERE d.id = :id"),
+        @NamedQuery(name = "Datahash.findByName", query = "SELECT d FROM Datahash d WHERE d.name = :name"),
+        @NamedQuery(name = "Datahash.findByFlinkdbuuid", query = "SELECT d FROM Datahash d WHERE d.flinkdbuuid = :flinkdbuuid"),
+        @NamedQuery(name = "Datahash.findByFlinkdbid", query = "SELECT d FROM Datahash d WHERE d.flinkdbid = :flinkdbid")})
 public class Datahash implements Serializable {
 
     @Basic(optional = false)
@@ -149,5 +139,5 @@ public class Datahash implements Serializable {
     public void setFlinkdbuuid(String flinkdbuuid) {
         this.flinkdbuuid = flinkdbuuid;
     }
-    
+
 }

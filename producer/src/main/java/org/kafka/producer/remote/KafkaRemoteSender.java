@@ -43,4 +43,10 @@ public class KafkaRemoteSender {
         env.execute();
     }
 
+    /*
+    Start Kafka at Windows:
+    bin\windows\zookeeper-server-start config\zookeeper.properties
+    bin\windows\kafka-server-start config\server.properties
+     */
+
 }

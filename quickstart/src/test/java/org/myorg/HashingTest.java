@@ -25,7 +25,7 @@ public class HashingTest {
     private static final String TEST_3GP_NAME = "test.3gp";
 
     // 300Mb file here
-   // private static final String TEST_AVI_NAME = "test.avi";
+    private static final String TEST_AVI_NAME = "test.avi";
 
     private static final int COUNT = 100;
 
@@ -39,7 +39,7 @@ public class HashingTest {
         testFile(TEST_PNG_NAME, COUNT);
         testFile(TEST_MP4_NAME, COUNT);
         testFile(TEST_3GP_NAME, COUNT);
-      //  testFile(TEST_AVI_NAME, COUNT);
+        testFile(TEST_AVI_NAME, COUNT);
     }
 
     private void testFile(String fileName, int count) throws IOException {
