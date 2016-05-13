@@ -5,7 +5,6 @@ import com.kafka.client.crypto.RSA;
 import com.kafka.client.dto.SendFileHelper;
 import com.kafka.client.dto.UserFileDto;
 import com.kafka.client.dto.UserSession;
-import com.sun.javafx.fxml.builder.URLBuilder;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -22,7 +21,8 @@ import java.util.zip.Deflater;
 public class Client {
 
     public static final String CONST_PRODUCER_SERVLET = ":8083/download";
-    public static final String CONST_QUICKSTART_SERVLET = ":8086/download";
+    //public static final String CONST_QUICKSTART_SERVLET = ":8086/download";
+    public static final String CONST_PROXY_SERVER = ":10000/download";
 
     private static final String TEST_PNG_NAME = "test.jpg";
     public static final int DATA_TO_SIGN_SIZE = 10000;
@@ -35,7 +35,7 @@ public class Client {
     public void getFilesList() throws IOException {
         UserSession userSession = loginUser();
         StringBuilder urlBuilder = new StringBuilder().append("http://127.0.0.1")
-                .append(CONST_QUICKSTART_SERVLET).append("?").append("action").append("=").append("FILES_LIST");
+                .append(CONST_PROXY_SERVER).append("?").append("action").append("=").append("FILES_LIST");
         long start = System.currentTimeMillis();
         String result = sendPost(urlBuilder.toString(), userSession);
         long end = System.currentTimeMillis();
@@ -49,7 +49,7 @@ public class Client {
         ClassLoader classLoader = getClass().getClassLoader();
         KeyPair keyPair = RSA.generateKeyPair();
         long start = System.currentTimeMillis();
-        File file = new File(classLoader.getResource(TEST_PNG_NAME).getFile());
+        File file = new File(classLoader.getResource("bigfile5.txt").getFile());
         FileInputStream fileInputStream = new FileInputStream(file);
         int bytesAvailable = fileInputStream.available();
         byte[] buffer = new byte[bytesAvailable];
@@ -80,7 +80,7 @@ public class Client {
         UserSession userSession = new UserSession();
         userSession.setLogin("login");
         userSession.setPassword("password");
-        String response = sendPost("http://127.0.0.1" + CONST_QUICKSTART_SERVLET + "?action=LOGIN", userSession);
+        String response = sendPost("http://127.0.0.1" + CONST_PROXY_SERVER + "?action=LOGIN", userSession);
         userSession.setIsAuthenticated(true);
         return userSession;
     }
@@ -126,7 +126,7 @@ public class Client {
         return outputStream.toByteArray();
     }
 
-    private static String sendPost(String url, UserSession userSession) throws IOException {
+    public static String sendPost(String url, UserSession userSession) throws IOException {
         URL urlObject = new URL(url);
         HttpURLConnection con = (HttpURLConnection) urlObject.openConnection();
         con.setRequestMethod("POST");

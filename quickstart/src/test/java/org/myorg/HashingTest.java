@@ -31,15 +31,19 @@ public class HashingTest {
 
     @Test
     public void testTextFile() throws IOException {
-        testFile(TEST_TEXT_FILE, COUNT);
-        testFile(TEST_BIG_TEXT_FILE, COUNT);
-        testFile(TEST_VERY_BIG_TEXT_FILE, COUNT);
-        testFile(TEST_GIF_NAME, COUNT);
-        testFile(TEST_JPG_NAME, COUNT);
-        testFile(TEST_PNG_NAME, COUNT);
-        testFile(TEST_MP4_NAME, COUNT);
-        testFile(TEST_3GP_NAME, COUNT);
-        testFile(TEST_AVI_NAME, COUNT);
+    //    testFile(TEST_TEXT_FILE, COUNT);
+        testFile("bigfile1.txt", COUNT);
+        testFile("bigfile2.txt", COUNT);
+        testFile("bigfile3.txt", COUNT);
+        testFile("bigfile4.txt", COUNT);
+        testFile("bigfile5.txt", COUNT);
+//        testFile(TEST_VERY_BIG_TEXT_FILE, COUNT);
+//        testFile(TEST_GIF_NAME, COUNT);
+//        testFile(TEST_JPG_NAME, COUNT);
+//        testFile(TEST_PNG_NAME, COUNT);
+//        testFile(TEST_MP4_NAME, COUNT);
+//        testFile(TEST_3GP_NAME, COUNT);
+//        testFile(TEST_AVI_NAME, COUNT);
     }
 
     private void testFile(String fileName, int count) throws IOException {
